@@ -1,29 +1,46 @@
-# Atividade 03 — Testes automatizados e feedback local
+# Relatório — Atividade 03: Testes automatizados e feedback local
 
-Sistema de pedidos com ciclo local de qualidade: testes automatizados, cobertura e lint,
-reunidos em um unico comando (`make quality`).
+**Disciplina:** DevOps
+**Atividade:** Aula 03 — Testes automatizados e feedback local
 
-## O que foi feito
+## Objetivo
 
-- Regras de negocio em `app/pedidos.py`: subtotal, desconto percentual, cupom, frete.
+Evoluir o sistema de pedidos das aulas anteriores criando um ciclo local de feedback
+técnico: testes automatizados, cobertura de código, lint e um comando único de
+qualidade (`make quality`).
+
+## O que foi implementado
+
+- Regras de negócio em `app/pedidos.py`: cálculo de subtotal, desconto percentual,
+  cupom promocional e frete.
 - CLI em `app/cli.py` para calcular o total de um pedido pelo terminal.
-- Suite de testes em `tests/` (unitarios e de integracao da CLI).
-- `pyproject.toml` configurando pytest, cobertura de branch e ruff.
+- Suíte de testes em `tests/` (unitários e de integração da CLI).
+- `pyproject.toml` configurando pytest, cobertura por branch e ruff.
 - `Makefile` com os atalhos `install`, `test`, `cov`, `lint` e `quality`.
 
-## Nova regra de negocio
+### Nova regra de negócio: cupom `FRETEEXPRESSO`
 
-Cupom `FRETEEXPRESSO`: nao concede desconto percentual, mas zera o valor do frete expresso
-quando o total do pedido (ja com desconto) excede R$ 50,00. O campo `cupom` continua unico
-(`str | None`), entao o sistema segue aceitando somente um cupom por pedido.
+Cupom que não concede desconto percentual, mas zera o valor do frete expresso quando
+o total do pedido (já com desconto) excede R$ 50,00. O campo `cupom` continua único
+(`str | None`), então o sistema segue aceitando somente um cupom por pedido.
 
-Implementado em `app/pedidos.py` (`cupom_libera_frete_expresso`, parametro novo em
-`calcular_frete`) e coberto por testes em `tests/test_pedidos.py`.
+Implementado em `app/pedidos.py` (`cupom_libera_frete_expresso` e um parâmetro novo
+em `calcular_frete`) e coberto por testes novos em `tests/test_pedidos.py`, sem
+alterar o comportamento dos testes já existentes.
 
-## Resultado das verificacoes
+## Resultado das verificações
 
 ```text
 ruff check .          -> All checks passed!
 pytest --cov=app      -> 33 passed, 96% cobertura
 make quality          -> lint + testes + cobertura, sem erros
 ```
+
+![Resultado de pytest e ruff no terminal](img/pytest:ruff.jpeg)
+
+## Conclusão
+
+O ciclo de qualidade local (`make quality`) roda sem erros, com toda a suíte de
+testes passando e cobertura de 96% sobre `app/`. A nova regra de negócio foi
+adicionada sem quebrar nenhum teste existente e sem abrir a possibilidade de
+múltiplos cupons por pedido.
