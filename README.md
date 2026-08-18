@@ -44,3 +44,7 @@ O ciclo de qualidade local (`make quality`) roda sem erros, com toda a suíte de
 testes passando e cobertura de 96% sobre `app/`. A nova regra de negócio foi
 adicionada sem quebrar nenhum teste existente e sem abrir a possibilidade de
 múltiplos cupons por pedido.
+
+## Alunos:
+- Eduarda Gabrieli Kacprzak
+- Giovane Comelli
