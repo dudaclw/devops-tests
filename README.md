@@ -63,3 +63,8 @@ pyproject.toml     configuracao de pytest, coverage e ruff
 requirements-dev.txt dependencias de desenvolvimento
 Makefile           atalhos de automacao local
 ```
+
+## Alunos:
+- Eduarda Gabrieli Kacprzak
+- Giovane Comelli
+
